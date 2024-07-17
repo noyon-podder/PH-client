@@ -22,6 +22,8 @@ const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
     const name = semesterOptions[Number(data.name) - 1].label;
+
+    // semester data for send redux api
     const semesterData = {
       name,
       code: data.name,
