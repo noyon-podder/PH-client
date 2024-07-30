@@ -10,44 +10,7 @@ import {
   useGetAllSemesterQuery,
 } from "../../../redux/features/admin/academicManagement.api";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
-
-//! this dummy data want to backend want
-const studentDummyData = {
-  password: "student123",
-  student: {
-    name: {
-      firstName: "I am ",
-      middleName: "Student",
-      lastName: "Number 1",
-    },
-    gender: "male",
-    dateOfBirth: "1990-01-01",
-
-    email: "student2@gmail.com",
-    contactNo: "1235678",
-    emergencyContactNo: "987-654-3210",
-    bloogGroup: "A+",
-    presentAddress: "123 Main St, Cityville",
-    permanentAddress: "456 Oak St, Townsville",
-
-    guardian: {
-      fatherName: "James Doe",
-      fatherOccupation: "Engineer",
-      fatherContactNo: "111-222-3333",
-      motherName: "Mary Doe",
-      motherOccupation: "Teacher",
-      motherContactNo: "444-555-6666",
-    },
-    localGuardian: {
-      name: "Alice Johnson",
-      occupation: "Doctor",
-      contactNo: "777-888-9999",
-      address: "789 Pine St, Villageton",
-    },
-    admissionSemester: "65b0104110b74fcbd7a25d92",
-    academicDepartment: "65b00fb010b74fcbd7a25d8e",
-  },
-};
+import { toast } from "sonner";
 
 //! this is dummy data for development
 //! should be delete this data
@@ -104,7 +67,7 @@ const CreateStudent = () => {
     label: item.name,
   }));
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log(data);
     const studentData = {
       password: "student123",
@@ -114,9 +77,16 @@ const CreateStudent = () => {
     const formData = new FormData();
 
     formData.append("data", JSON.stringify(studentData));
-    formData.append("file", data.image);
+    // ! i have not set up to cloudinary file in backend so it is not working
+    // formData.append("file", data.image);
 
-    addStudent(formData);
+    await addStudent(formData).then((res) => {
+      if (res.error) {
+        toast.error("Something went wrong", { id: "toastId" });
+      } else {
+        toast.success("Student Created Successfully", { id: "toastId" });
+      }
+    });
   };
   return (
     <Row>
