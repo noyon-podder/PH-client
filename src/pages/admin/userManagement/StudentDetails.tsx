@@ -9,8 +9,6 @@ const StudentDetails = () => {
 
   const student = data?.data;
 
-  console.log(data);
-
   return (
     <>
       {isLoading ? (
@@ -52,6 +50,10 @@ const StudentDetails = () => {
           <Row style={{ marginBottom: "20px" }}>
             <Col span={12}>Permanent Address: </Col>
             <Col span={12}>{student?.permanentAddress}</Col>
+          </Row>
+          <Row style={{ marginBottom: "20px" }}>
+            <Col span={12}>Gender: </Col>
+            <Col span={12}>{student?.gender}</Col>
           </Row>
           <Row style={{ marginBottom: "20px" }}>
             <Col span={12}>Blood Group: </Col>
