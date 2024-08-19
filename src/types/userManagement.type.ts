@@ -79,3 +79,24 @@ export type TAcademicDepartment = {
   updatedAt: string;
   __v: number;
 };
+
+export type TFaculty = {
+  _id: string;
+  id: string;
+  user: string;
+  designation: string;
+  name: TName;
+  gender: string;
+  dateOfBirth: string;
+  email: string;
+  contactNo: string;
+  emergencyContactNo: string;
+  bloogGroup: string;
+  presentAddress: string;
+  permanentAddress: string;
+  profileImg: string;
+  academicDepartment: TAcademicDepartment;
+  academicFaculty: any;
+  isDeleted: boolean;
+  fullName: string;
+};
