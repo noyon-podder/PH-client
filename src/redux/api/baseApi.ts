@@ -35,6 +35,7 @@ const fetchBaseQueryWithRefreshToken: BaseQueryFn<
     toast.error(result?.error?.data?.message);
   }
 
+  // when expire the access token call this api
   if (result.error?.status === 401) {
     const response = await fetch(
       "http://localhost:5000/api/v1/auth/refresh-token",
